@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		A03C85812170591600C6F910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C85802170591600C6F910 /* AppDelegate.swift */; };
 		A03C85832170591600C6F910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C85822170591600C6F910 /* ViewController.swift */; };
-		A03C85862170591600C6F910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A03C85842170591600C6F910 /* Main.storyboard */; };
 		A03C85882170591700C6F910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A03C85872170591700C6F910 /* Assets.xcassets */; };
 		A03C858B2170591700C6F910 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A03C85892170591700C6F910 /* LaunchScreen.storyboard */; };
+		A03C859421705A3400C6F910 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C859321705A3400C6F910 /* LoginController.swift */; };
+		A03E0D042170FCAD00F72223 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E0D032170FCAD00F72223 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A03C857D2170591600C6F910 /* Game of Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game of Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03C85802170591600C6F910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A03C85822170591600C6F910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A03C85852170591600C6F910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A03C85872170591700C6F910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A03C858A2170591700C6F910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A03C858C2170591700C6F910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A03C859321705A3400C6F910 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		A03E0D032170FCAD00F72223 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,31 @@
 		A03C857F2170591600C6F910 /* Game of Chat */ = {
 			isa = PBXGroup;
 			children = (
+				A03E0D022170FC9A00F72223 /* Extension */,
+				A03C859221705A1B00C6F910 /* Controller */,
 				A03C85802170591600C6F910 /* AppDelegate.swift */,
-				A03C85822170591600C6F910 /* ViewController.swift */,
-				A03C85842170591600C6F910 /* Main.storyboard */,
 				A03C85872170591700C6F910 /* Assets.xcassets */,
 				A03C85892170591700C6F910 /* LaunchScreen.storyboard */,
 				A03C858C2170591700C6F910 /* Info.plist */,
 			);
 			path = "Game of Chat";
+			sourceTree = "<group>";
+		};
+		A03C859221705A1B00C6F910 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A03C85822170591600C6F910 /* ViewController.swift */,
+				A03C859321705A3400C6F910 /* LoginController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A03E0D022170FC9A00F72223 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A03E0D032170FCAD00F72223 /* UIColorExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +143,6 @@
 			files = (
 				A03C858B2170591700C6F910 /* LaunchScreen.storyboard in Resources */,
 				A03C85882170591700C6F910 /* Assets.xcassets in Resources */,
-				A03C85862170591600C6F910 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,21 +154,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A03C85832170591600C6F910 /* ViewController.swift in Sources */,
+				A03C859421705A3400C6F910 /* LoginController.swift in Sources */,
 				A03C85812170591600C6F910 /* AppDelegate.swift in Sources */,
+				A03E0D042170FCAD00F72223 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A03C85842170591600C6F910 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A03C85852170591600C6F910 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A03C85892170591700C6F910 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
