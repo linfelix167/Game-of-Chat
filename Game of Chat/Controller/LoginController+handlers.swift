@@ -53,7 +53,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             guard let uid = user?.user.uid else { return }
             
             // successfully authenticated user
-            let storageRef = Storage.storage().reference().child("user_profile_pictures/\(uid).ppg")
+            let storageRef = Storage.storage().reference().child("/images/\(uid).png")
             if let uploadData = self.profileImageView.image!.pngData() {
                 storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     if let error = error {

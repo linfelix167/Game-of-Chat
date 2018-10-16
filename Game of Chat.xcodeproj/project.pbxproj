@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6803CAF47879FD427BB8ED45 /* Pods_Game_of_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2071AB7D3840B4A05A13809F /* Pods_Game_of_Chat.framework */; };
+		A01D4C7621763D1800399325 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D4C7521763D1800399325 /* UIImageViewExtension.swift */; };
 		A03C85812170591600C6F910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C85802170591600C6F910 /* AppDelegate.swift */; };
 		A03C85832170591600C6F910 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C85822170591600C6F910 /* MessageController.swift */; };
 		A03C85882170591700C6F910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A03C85872170591700C6F910 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		2071AB7D3840B4A05A13809F /* Pods_Game_of_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Game_of_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29071959BC0070BD98CAFF1E /* Pods-Game of Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Game of Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Game of Chat/Pods-Game of Chat.debug.xcconfig"; sourceTree = "<group>"; };
+		A01D4C7521763D1800399325 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		A03C857D2170591600C6F910 /* Game of Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game of Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03C85802170591600C6F910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A03C85822170591600C6F910 /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				A03E0D032170FCAD00F72223 /* UIColorExtension.swift */,
+				A01D4C7521763D1800399325 /* UIImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A03C85832170591600C6F910 /* MessageController.swift in Sources */,
+				A01D4C7621763D1800399325 /* UIImageViewExtension.swift in Sources */,
 				A069FE4121740E9800094E3B /* NewMessageController.swift in Sources */,
 				A0E103972174E64700A083D9 /* LoginController+handlers.swift in Sources */,
 				A069FE442174122000094E3B /* User.swift in Sources */,

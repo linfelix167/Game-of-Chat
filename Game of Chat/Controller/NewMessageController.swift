@@ -34,6 +34,7 @@ class NewMessageController: UITableViewController {
                 let user = User()
                 user.name = dictionary["name"] as? String
                 user.email = dictionary["email"] as? String
+                user.profileImageUrl = dictionary["profileImageUrl"] as? String
                 self.users.append(user)
                 
                 DispatchQueue.main.async {
@@ -49,11 +50,20 @@ class NewMessageController: UITableViewController {
         return users.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! UserCell
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
+        
+        if let profileImageUrl = user.profileImageUrl {
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+        }
+        
         return cell
     }
 }
