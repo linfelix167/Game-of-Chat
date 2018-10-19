@@ -15,6 +15,7 @@
 		A03C858B2170591700C6F910 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A03C85892170591700C6F910 /* LaunchScreen.storyboard */; };
 		A03C859421705A3400C6F910 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C859321705A3400C6F910 /* LoginController.swift */; };
 		A03E0D042170FCAD00F72223 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E0D032170FCAD00F72223 /* UIColorExtension.swift */; };
+		A050BC99217A3740007F16A8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A050BC98217A3740007F16A8 /* Message.swift */; };
 		A069FE4121740E9800094E3B /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069FE4021740E9800094E3B /* NewMessageController.swift */; };
 		A069FE442174122000094E3B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069FE432174122000094E3B /* User.swift */; };
 		A069FE47217414D900094E3B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069FE46217414D900094E3B /* UserCell.swift */; };
@@ -35,6 +36,7 @@
 		A03C858C2170591700C6F910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A03C859321705A3400C6F910 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A03E0D032170FCAD00F72223 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		A050BC98217A3740007F16A8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A069FE4021740E9800094E3B /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		A069FE432174122000094E3B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A069FE46217414D900094E3B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				A069FE432174122000094E3B /* User.swift */,
+				A050BC98217A3740007F16A8 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				A069FE4121740E9800094E3B /* NewMessageController.swift in Sources */,
 				A0E103972174E64700A083D9 /* LoginController+handlers.swift in Sources */,
 				A069FE442174122000094E3B /* User.swift in Sources */,
+				A050BC99217A3740007F16A8 /* Message.swift in Sources */,
 				A03C859421705A3400C6F910 /* LoginController.swift in Sources */,
 				A03C85812170591600C6F910 /* AppDelegate.swift in Sources */,
 				A03E0D042170FCAD00F72223 /* UIColorExtension.swift in Sources */,

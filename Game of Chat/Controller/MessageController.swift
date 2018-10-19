@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-class MessageController: UITableViewController, UIGestureRecognizerDelegate {
+class MessageController: UITableViewController {
+    
+    var messages = [Message]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,26 @@ class MessageController: UITableViewController, UIGestureRecognizerDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_message_icon"), style: .plain, target: self, action: #selector(handleNewMessage))
         
         checkIfUserIsLogin()
+        
+        observeMessages()
+    }
+    
+    func observeMessages() {
+        let ref = Database.database().reference().child("messages")
+        ref.observe(.childAdded) { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.fromId = dictionary["fromId"] as? String
+                message.toId = dictionary["toId"] as? String
+                message.text = dictionary["text"] as? String
+                message.timestamp = dictionary["timestamp"] as? NSDate
+                self.messages.append(message)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     func checkIfUserIsLogin() {
@@ -44,59 +66,60 @@ class MessageController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     func setupNavBarWithUser(user: User) {
-//        let titleView = UIView()
-//        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-//
+        let titleView = UIView()
+        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+
 //        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showChatController))
-//        tapGestureRecognizer.numberOfTapsRequired = 2
-//        tapGestureRecognizer.delegate = self
-//        titleView.isUserInteractionEnabled = true
+//        tapGestureRecognizer.numberOfTapsRequired = 1
 //        titleView.addGestureRecognizer(tapGestureRecognizer)
-//
-//        let containerView = UIView()
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-//        titleView.addSubview(containerView)
-//
-//        let profileImageView = UIImageView()
-//        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-//        profileImageView.contentMode = .scaleAspectFill
-//        profileImageView.layer.cornerRadius = 20
-//        profileImageView.clipsToBounds = true
-//
-//        if let profileImageUrl = user.profileImageUrl {
-//            profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-//        }
-//
-//        containerView.addSubview(profileImageView)
-//        profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-//        profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-//        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//
-//        let nameLabel = UILabel()
-//        nameLabel.text = user.name
-//        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        nameLabel.isUserInteractionEnabled = true
-//        nameLabel.addGestureRecognizer(tapGestureRecognizer)
-//
-//        containerView.addSubview(nameLabel)
-//        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
-//        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-//        nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-//        nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
-//
-//        containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-//        containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+//        titleView.isUserInteractionEnabled = true
+
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(containerView)
+
+        let profileImageView = UIImageView()
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.cornerRadius = 20
+        profileImageView.clipsToBounds = true
+
+        if let profileImageUrl = user.profileImageUrl {
+            profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+        }
+
+        containerView.addSubview(profileImageView)
+
+        profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+        let nameLabel = UILabel()
+        nameLabel.text = user.name
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.isUserInteractionEnabled = true
+
+        containerView.addSubview(nameLabel)
+
+        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
+
+        containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         
-        let button = UIButton(type: .system)
-        button.setTitle(user.name, for: .normal)
-        button.addTarget(self, action: #selector(showChatController), for: .touchUpInside)
+//        let button = UIButton(type: .system)
+//        button.setTitle(user.name, for: .normal)
+//        button.addTarget(self, action: #selector(showChatControllerForUser), for: .touchUpInside)
         
-        self.navigationItem.titleView = button
+        self.navigationItem.titleView = titleView
     }
     
-    @objc func showChatController() {
+    @objc func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = user
         navigationController?.pushViewController(chatLogController, animated: true)
     }
 
@@ -114,7 +137,22 @@ class MessageController: UITableViewController, UIGestureRecognizerDelegate {
     
     @objc func handleNewMessage() {
         let newMessageController = NewMessageController()
+        newMessageController.messagesController = self
         present(UINavigationController(rootViewController: newMessageController), animated: true)
+    }
+    
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        let message = messages[indexPath.row]
+        cell.textLabel?.text = message.toId
+        cell.detailTextLabel?.text = message.text
+        return cell
     }
 }
 
