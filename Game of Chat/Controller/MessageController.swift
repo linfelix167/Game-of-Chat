@@ -37,11 +37,7 @@ class MessageController: UITableViewController {
             
             messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let message = Message()
-                    message.fromId = dictionary["fromId"] as? String
-                    message.toId = dictionary["toId"] as? String
-                    message.text = dictionary["text"] as? String
-                    message.timestamp = dictionary["timestamp"] as? NSNumber
+                    let message = Message(dictionary: dictionary)
                     
                     if let toId = message.toId {
                         self.messagesDictionary[toId] = message
@@ -63,11 +59,7 @@ class MessageController: UITableViewController {
         let ref = Database.database().reference().child("messages")
         ref.observe(.childAdded) { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                let message = Message()
-                message.fromId = dictionary["fromId"] as? String
-                message.toId = dictionary["toId"] as? String
-                message.text = dictionary["text"] as? String
-                message.timestamp = dictionary["timestamp"] as? NSNumber
+                let message = Message(dictionary: dictionary)
                 
                 if let toId = message.toId {
                     self.messagesDictionary[toId] = message
@@ -99,9 +91,7 @@ class MessageController: UITableViewController {
         
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                let user = User()
-                user.name = dictionary["name"] as? String
-                user.profileImageUrl = dictionary["profileImageUrl"] as? String
+                let user = User(dictionary: dictionary)
                 self.setupNavBarWithUser(user: user)
             }
         }
@@ -206,6 +196,22 @@ class MessageController: UITableViewController {
         cell.message = message
         
         return cell
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        
+        guard let chatPartnerId = message.chatPartnerId() else { return }
+        
+        let ref = Database.database().reference().child("users").child(chatPartnerId)
+        ref.observe(.value) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: AnyObject] else { return }
+            let user = User(dictionary: dictionary)
+            user.id = chatPartnerId
+            self.showChatControllerForUser(user: user)
+        }
     }
 }
 

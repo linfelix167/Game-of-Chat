@@ -21,6 +21,7 @@
 		A069FE47217414D900094E3B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069FE46217414D900094E3B /* UserCell.swift */; };
 		A0C409EE21719D7800A926A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0C409ED21719D7800A926A0 /* GoogleService-Info.plist */; };
 		A0CE7D9B2178DB8F00BDA0F8 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CE7D9A2178DB8F00BDA0F8 /* ChatLogController.swift */; };
+		A0D2761C2180217A00ED2518 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2761B2180217A00ED2518 /* ChatMessageCell.swift */; };
 		A0E103972174E64700A083D9 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E103962174E64700A083D9 /* LoginController+handlers.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		A069FE46217414D900094E3B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		A0C409ED21719D7800A926A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A0CE7D9A2178DB8F00BDA0F8 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		A0D2761B2180217A00ED2518 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		A0E103962174E64700A083D9 /* LoginController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		E0A3EF8FD00EFAAFD42E0366 /* Pods-Game of Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Game of Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Game of Chat/Pods-Game of Chat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				A069FE46217414D900094E3B /* UserCell.swift */,
+				A0D2761B2180217A00ED2518 /* ChatMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				A050BC99217A3740007F16A8 /* Message.swift in Sources */,
 				A03C859421705A3400C6F910 /* LoginController.swift in Sources */,
 				A03C85812170591600C6F910 /* AppDelegate.swift in Sources */,
+				A0D2761C2180217A00ED2518 /* ChatMessageCell.swift in Sources */,
 				A03E0D042170FCAD00F72223 /* UIColorExtension.swift in Sources */,
 				A069FE47217414D900094E3B /* UserCell.swift in Sources */,
 			);
