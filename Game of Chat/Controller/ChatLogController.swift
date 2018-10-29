@@ -40,9 +40,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         collectionView.keyboardDismissMode = .interactive
         
-//        setupInputComponents()
-//
-//        setupKeyboardObservers()
+        //        setupInputComponents()
+        //
+        //        setupKeyboardObservers()
     }
     
     lazy var inputContainerView: UIView = {
@@ -123,9 +123,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     func observeMessages() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = Auth.auth().currentUser?.uid , let toId = user?.id else { return }
         
-        let userMessagesRef = Database.database().reference().child("user-messages").child(uid)
+        let userMessagesRef = Database.database().reference().child("user-messages").child(uid).child(toId)
         userMessagesRef.observe(.childAdded, with: { (snapshot) in
             let messageId = snapshot.key
             let messagesRef = Database.database().reference().child("messages").child(messageId)
@@ -135,13 +135,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 
                 let message = Message(dictionary: dictionary)
                 
-                if message.chatPartnerId() == self.user?.id {
-                    self.messages.append(message)
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+                self.messages.append(message)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
+                
             }, withCancel: nil)
             
         }, withCancel: nil)
@@ -207,10 +205,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             self.inputTextField.text = nil
             
             let messageId = childRef.key
-            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId)
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
             userMessagesRef.setValue([messageId: true])
             
-            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId)
+            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
             recipientUserMessagesRef.setValue([messageId: true])
         }
     }
