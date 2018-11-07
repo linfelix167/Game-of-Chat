@@ -77,6 +77,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A004D1E421934959002E2916 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A03C85802170591600C6F910 /* AppDelegate.swift */,
+				A03C85872170591700C6F910 /* Assets.xcassets */,
+				A03C85892170591700C6F910 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A03C85742170591600C6F910 = {
 			isa = PBXGroup;
 			children = (
@@ -102,9 +112,7 @@
 				A069FE422174121500094E3B /* Model */,
 				A03E0D022170FC9A00F72223 /* Extension */,
 				A03C859221705A1B00C6F910 /* Controller */,
-				A03C85802170591600C6F910 /* AppDelegate.swift */,
-				A03C85872170591700C6F910 /* Assets.xcassets */,
-				A03C85892170591700C6F910 /* LaunchScreen.storyboard */,
+				A004D1E421934959002E2916 /* Supporting Files */,
 				A03C858C2170591700C6F910 /* Info.plist */,
 				A0C409ED21719D7800A926A0 /* GoogleService-Info.plist */,
 			);

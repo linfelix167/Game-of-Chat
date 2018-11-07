@@ -47,6 +47,7 @@ class MessageController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_message_icon"), style: .plain, target: self, action: #selector(handleNewMessage))
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        tableView.allowsSelectionDuringEditing = true
         
         checkIfUserIsLogin()
     }
@@ -61,6 +62,11 @@ class MessageController: UITableViewController {
                 let messageId = snapshot.key
                 self.fetchMessageWithMessageId(messageId: messageId)
             })
+        }
+        
+        ref.observe(.childRemoved) { (snapshot) in
+            self.messagesDictionary.removeValue(forKey: snapshot.key)
+            self.attemptReloadOfTable()
         }
     }
     
@@ -233,6 +239,28 @@ class MessageController: UITableViewController {
             let user = User(dictionary: dictionary)
             user.id = chatPartnerId
             self.showChatControllerForUser(user: user)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let message = self.messages[indexPath.row]
+        
+        if let chatPartnerId = message.chatPartnerId() {
+            Database.database().reference().child("user-messages").child(uid).child(chatPartnerId).removeValue { (error, ref) in
+                if let error = error {
+                    print("Failed to delete message: \(error)")
+                    return
+                }
+                
+                self.messagesDictionary.removeValue(forKey: chatPartnerId)
+                self.attemptReloadOfTable()
+            }
         }
     }
 }
